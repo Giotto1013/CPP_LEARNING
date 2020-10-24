@@ -5,6 +5,11 @@
 #include <vector>
 using namespace std;
 
+struct student
+{
+    int num;
+};
+
 int main()
 {
     //一.迭代器简介
@@ -33,21 +38,72 @@ int main()
     //}
 
     //d) 
-    vector<int> iv = { 100, 200, 300 };
-    for (vector<int>::iterator iter = iv.begin(); iter != iv.end(); iter++)
-    {
-        cout << *iter << endl;
-    }
+    //vector<int> iv = { 100, 200, 300 };
+    //for (vector<int>::iterator iter = iv.begin(); iter != iv.end(); iter++)
+    //{
+    //    cout << *iter << endl;
+    //}
 
-    //反向迭代器：从后往前遍历容器
-    //rbegin()/rend()
-    for (vector<int>::reverse_iterator riter = iv.rbegin(); riter != iv.rend(); riter++)
-    {
-        cout << *riter << endl;
-    }
+    ////反向迭代器：从后往前遍历容器
+    ////rbegin()/rend()
+    //for (vector<int>::reverse_iterator riter = iv.rbegin(); riter != iv.rend(); riter++)
+    //{
+    //    cout << *riter << endl;
+    //}
 
     //四.迭代器运算符
     //a).*iter : 返回迭代器iter所指向的元素的引用
+        //必须保证这个迭代器指向的是有效的元素，不能指向end()
+
+    //b).++iter iter++ : 让迭代器指向容器下一个元素
+    /*vector<int>::iterator iter = iv.end();
+    iter++; */  //不可以，程序会崩溃。end()是一个不存在的元素
+    //vector<int>::iterator iter = iv.begin();
+    //iter++;
+    //cout << *iter << endl;  //200
+
+    //c).--iter iter-- ：让迭代器指向容器的上一个元素
+    /*vector<int>::iterator iter = iv.begin();
+    iter--;*/       //指向begin()后，不可以再iter--,程序会崩溃
+    //vector<int>::iterator iter = iv.end();
+    //iter--;
+    //cout << *iter << endl;  //300
+
+    //d).iter1 == iter2, iter1 != iter2 : 判断两个迭代器是否相等
+    //如果两个迭代器指向的是同一个元素，则相等，否则不相等
+
+    //e).如何引用结构中的成员
+    //vector<student> sv;
+    //student mystu;
+    //mystu.num = 100;
+    //sv.push_back(mystu);
+
+    //vector<student>::iterator iter;
+    //iter = sv.begin();  //指向第一个元素
+    //cout << (*iter).num << endl;
+    //cout << iter->num << endl;
+
+
+    //五.const_iterator迭代器
+    //const_iterator表示值不能改变，表示迭代器指向的元素值不能改变，而不是表示迭代器本身不能改变
+    //即迭代器本身可以指向其他元素，但是指向的元素本身值不能改变
+    //只能从容器中读元素但是无法改变元素的值
+    vector<int> iv = { 100, 200, 300 };
+    //vector<int>::const_iterator iter;
+    //for (iter = iv.begin(); iter != iv.end(); iter++)
+    //{
+    //    // *iter = 90;  //不可以，语法错误，const_iterator无法修改值
+    //    cout << *iter << endl;
+    //}
+
+    //5-1. cbegin()/cend() : c++11中新引入的，与begin(), end()类似
+    //返回的都是常量迭代器
+    for (auto iter = iv.cbegin(); iter != iv.cend(); iter++)
+    {
+        //*iter = 4;  //语法错误，不能修改。iter是一个常量迭代器
+        cout << *iter << endl;
+    }
+
 
     return 0;
 }
