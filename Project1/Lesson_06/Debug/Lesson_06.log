@@ -1,0 +1,3 @@
+﻿  Lesson_06.cpp
+D:\01_Study\02_C++\01_workspace\Project1\Lesson_06\Lesson_06.cpp(50): warning C4172: 返回局部变量或临时变量的地址: tmpValue
+  Lesson_06.vcxproj -> D:\01_Study\02_C++\01_workspace\Project1\Debug\Lesson_06.exe
